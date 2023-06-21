@@ -9,7 +9,12 @@ import (
 
 func main() {
 	// Input domain to enumerate subdomains
-	domain := "example.com"
+	if len(os.Args) < 2 {
+		fmt.Println("Please provide a domain as a parameter.")
+		return
+	}
+
+	domain := os.Args[1]
 
 	// Run subfinder to enumerate subdomains
 	subfinderCmd := exec.Command("subfinder", "-d", domain, "-o", "subdomains.txt")
